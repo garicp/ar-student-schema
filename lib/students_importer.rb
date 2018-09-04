@@ -1,4 +1,4 @@
-require_relative '../app/models/student'
+require_relative '../db/config.rb'
 
 module StudentsImporter
   def self.import(filename=File.dirname(__FILE__) + "/../db/data/students.csv")
