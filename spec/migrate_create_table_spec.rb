@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../db/config'
+require_relative '../lib/test_config'
 
 
 describe "create table with correct schema" do
