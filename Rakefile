@@ -36,7 +36,41 @@ end
 desc "populate the teachers database with sample data"
 task "db:populate_teacher" do
   # Create some teachers for your teachers table in database
+  Teacher.create(name:'teacher1', email:'teacher1@mail.com', phone:'0123456781')
+  Teacher.create(name:'teacher2', email:'teacher2@mail.com', phone:'0123456782')
+  Teacher.create(name:'teacher3', email:'teacher3@mail.com', phone:'0123456783')
+  Teacher.create(name:'teacher4', email:'teacher4@mail.com', phone:'0123456784')
+  Teacher.create(name:'teacher5', email:'teacher5@mail.com', phone:'0123456785')
+  Teacher.create(name:'teacher6', email:'teacher6@mail.com', phone:'0123456786')
+  Teacher.create(name:'teacher7', email:'teacher7@mail.com', phone:'0123456787')
+  Teacher.create(name:'teacher8', email:'teacher8@mail.com', phone:'0123456788')
+  Teacher.create(name:'teacher9', email:'teacher9@mail.com', phone:'0123456789')
+
+  # p 'populate_teacher executed :)'
 end
+
+desc "populate the student_teachers"
+task "db:populate_mix" do
+  
+  students = Student.all
+  teachers = Teacher.all
+
+  students.each do |student|
+  teacher_id = []
+
+    teachers.each do |teacher|
+      teacher_id << teacher.id
+    end
+
+    3.times{
+      x = teacher_id.sample
+      StudentTeacher.create(student_id:student.id, teacher_id:x)
+      teacher_id.delete(x)
+    }
+  end
+  # p 'populate_mix executed :):)'
+end
+
 
 desc 'Retrieves the current schema version number'
 task "db:version" do
